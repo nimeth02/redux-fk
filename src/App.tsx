@@ -1,25 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useSelector } from 'react-redux';
 import './App.css';
+import { RootState } from './app/store';
+import Resevationcardd from './components/resevationcard';
+//import Resevationcard from './components/resevationcard';
+
 
 function App() {
+
+    const reservation=useSelector((state:RootState)=>state.resevationslice.value)
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="reservation-container">
+        <div>
+          <h5 className="reservation-header">Reservations</h5>
+          <div className="reservation-cards-container">
+          {reservation.map((name,i)=>{
+              <Resevationcardd name={name} />
+              //console.log(name)
+          })}
+            
+          </div>
+        </div>
+        <div className="reservation-input-container">
+          <input />
+          <button>Add</button>
+        </div>
+      </div>
+      <div className="customer-food-container">
+        <div className="customer-food-card-container">
+          <p>Selena Gomez</p>
+          <div className="customer-foods-container">
+            <div className="customer-food"></div>
+            <div className="customer-food-input-container">
+              <input />
+              <button>Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
   );
 }
 
